@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.3 on win32)" generated="2025-07-17T10:49:26.947619" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Login" source="C:\Users\surek\OneDrive\Desktop\task19\tests\test_login.robot">
+<kw name="Open Browser To Login Page" owner="browser_keywords" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-07-17T10:49:27.255135" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001BA6D06B380&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-07-17T10:49:27.254708" elapsed="0.000485"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-17T10:49:27.255379" elapsed="0.000190"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-gpu</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-07-17T10:49:27.255708" elapsed="0.000149"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:27.256208" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>Chrome</arg>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2025-07-17T10:49:27.255994" elapsed="1.428753"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:28.685367" level="INFO">Opening url 'https://robotsparebinindustries.com'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-07-17T10:49:28.685061" elapsed="1.762284"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-07-17T10:49:30.447562" elapsed="0.031076"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:27.253999" elapsed="3.224784"/>
+</kw>
+<test id="s1-t1" name="Successful Login and Logout Test" line="11">
+<kw name="Login With Valid Credentials" owner="login_keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:30.480508" level="INFO">Typing text 'maria' into text field 'id=username'.</msg>
+<arg>id=username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T10:49:30.480080" elapsed="0.141815"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:30.622714" level="INFO">Typing text 'thoushallnotpass' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T10:49:30.622245" elapsed="0.142288"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//button[@type='submit']</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-17T10:49:30.764761" elapsed="0.027584"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2025-07-17T10:49:30.792592" elapsed="0.292207"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:31.085470" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T10:49:31.085121" elapsed="0.089763"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:30.479690" elapsed="0.695357"/>
+</kw>
+<kw name="Verify Login Success" owner="validation_keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//a[@class='nav-link']</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-17T10:49:31.176071" elapsed="0.022951"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:31.208736" level="INFO">Current page contains element 'xpath=//a[@class='nav-link']'.</msg>
+<arg>xpath=//a[@class='nav-link']</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2025-07-17T10:49:31.199241" elapsed="0.009706"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:31.175598" elapsed="0.033743"/>
+</kw>
+<kw name="Logout From Application" owner="login_keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=logout</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-17T10:49:31.210617" elapsed="0.913770"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-07-17T10:49:32.124950" level="INFO">Clicking element 'id=logout'.</msg>
+<arg>id=logout</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T10:49:32.124695" elapsed="0.107562"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:31.210062" elapsed="1.022341"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:30.478885" elapsed="1.753864"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-07-17T10:49:32.233633" elapsed="2.114800"/>
+</kw>
+<status status="PASS" start="2025-07-17T10:49:26.949163" elapsed="7.399496"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Login" id="s1" pass="1" fail="0" skip="0">Test Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

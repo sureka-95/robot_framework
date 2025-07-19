@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_ENV = 'production'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Example: sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Example: sh 'pytest tests/'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Example: sh './deploy.sh'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
